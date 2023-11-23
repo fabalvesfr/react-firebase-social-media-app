@@ -14,19 +14,28 @@ export const Navbar = () => {
   };
 
   return (
-    <div>
-      <Link to="/">Home</Link>
+    <div className="navbar">
+      <Link className="link home-link" to="/">
+        <i className="fa-solid fa-house"></i>Home
+      </Link>
       {!user ? (
-        <Link to="/login">Login</Link>
+        <Link className="link login-link" to="/login">
+          <i className="fa-solid fa-user"></i>
+          Login
+        </Link>
       ) : (
-        <Link to="/createpost">Create Post</Link>
+        <Link className="link create-post-link" to="/createpost">
+          <i className="fa-solid fa-pen"></i>Create Post
+        </Link>
       )}
       {user && (
-        <div>
-          <p>{user?.displayName}</p>
-          <img src={user?.photoURL || ""} width="20" height="20" />
+        <div className="user-info">
+          <p style={{ fontSize: "0.8em" }}>{user?.displayName}</p>
+          <img className="user-photo" src={user?.photoURL || ""} />
           {/* The src attribute assumes an empty string in case the user does not have a photo in his profile and the photoURL is null */}
-          <button onClick={signUserOut}>Log out</button>
+          <button className="logout-button" onClick={signUserOut}>
+            <i className="fa-solid fa-right-from-bracket"></i>
+          </button>
         </div>
       )}
     </div>
