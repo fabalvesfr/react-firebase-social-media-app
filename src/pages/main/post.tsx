@@ -88,20 +88,29 @@ export const Post = (props: Props) => {
   }, []);
 
   return (
-    <div>
-      <div className="title">
+    <div className="post">
+      <div className="header-post">
+        <i className="fa-solid fa-user"></i>
+        <p>@{post.username}</p>
+      </div>
+      <div className="title-post">
         <h1>{post.title}</h1>
       </div>
-      <div className="body">
+      <div className="body-post">
         <p>{post.description}</p>
       </div>
-      <div className="footer">
-        <p>@{post.username}</p>
-        <button onClick={hasUserLiked ? removeLike : addLike}>
-          {" "}
-          {hasUserLiked ? <>&#128078;</> : <>&#128077;</>}
+      <div className="footer-post">
+        <div
+          className="like-button"
+          onClick={hasUserLiked ? removeLike : addLike}
+        >
+          {hasUserLiked ? (
+            <i className="fa-regular fa-thumbs-up"></i>
+          ) : (
+            <i className="fa-regular fa-thumbs-down"></i>
+          )}
           {/* If the current user has already liked the post, the like button button will no longer be available and a thumbs down button will appear instead */}
-        </button>
+        </div>
         {/* HTML entity (like an unicode) for the Like icon */}
         {likes && <p>Likes: {likes.length}</p>}
       </div>

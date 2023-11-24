@@ -15,7 +15,8 @@ export const Login = () => {
     <div>
       <h1>Login page</h1>
       <p>Sign in with Google to continue</p>
-      <button className="button" onClick={signInWithGoogle}>
+      <button className="button login-button" onClick={signInWithGoogle}>
+        <img className="google-logo" src="/google-logo.png" alt="Google logo" />
         Sign in with Google
       </button>
     </div>

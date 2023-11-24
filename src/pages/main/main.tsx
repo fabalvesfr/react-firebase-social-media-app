@@ -1,7 +1,8 @@
 import { getDocs, collection } from "firebase/firestore"; // here each doc represents an entry in our firebase db
-import { db } from "../../config/firebase";
+import { auth, db } from "../../config/firebase";
 import { useEffect, useState } from "react";
 import { Post } from "../main/post";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 export interface Post {
   id: string;
@@ -12,6 +13,8 @@ export interface Post {
 }
 
 export const Main = () => {
+  const [user] = useAuthState(auth);
+
   const postsRef = collection(db, "posts");
 
   const [postsList, setPostsList] = useState<Post[] | null>(null); // The notation means that our state is represented either by a null value or an array of Post
@@ -31,6 +34,12 @@ export const Main = () => {
   return (
     <div>
       <h2>Home page</h2>
+      {!user && (
+        <div style={{ marginTop: 100 }}>
+          <i className="fa-brands fa-rocketchat fa-fade fa-rocketchat-home"></i>
+          <h3 style={{ color: "#b1663c" }}>Log in to check the latest news</h3>
+        </div>
+      )}
       {postsList?.map((post) => (
         <Post post={post} />
       ))}
